@@ -1,3 +1,5 @@
+import math
+
 # TO-DO: complete the helper function below to merge 2 sorted arrays
 def merge( arrA, arrB ):
     merged_arr = []
@@ -56,6 +58,7 @@ def merge_sort( arr ):
 
     return arr
 
+
 # STRETCH: implement an in-place merge sort algorithm
 def merge_in_place(arr, start, mid, end):
     for i in range(start, end):
@@ -71,26 +74,38 @@ def merge_in_place(arr, start, mid, end):
                 end -= 1
     return arr
 
-# array = [2,4,7,3,4,6,2,3,5,1]
-# merged = merge_in_place(array, 3, 6, 9)
-# print(merged, "SUCCESS" if merged == [2,4,7,2,3,3,4,5,6,1] else "FAILURE")
 
-# def merge_sort_in_place(arr, l, r): 
-#     # don't modify empty arrays or arrays with length 1
-#     if len(arr) < 2:
-#         return arr
+def merge_sort_in_place(arr, l, r): 
+    # correction for... differing opinions on what r should represent 😜
+    r += 1
 
-#     # find midpoint
-#     mid = int(len(arr) / 2)
+    # don't modify empty selections or selections with length 1
+    if r - l < 2:
+        return arr
 
-#     # split array (and keep splitting until done)
-#     arr = [merge_sort(arr[:mid]), merge_sort(arr[mid:])]
+    # find number of iterations, then iterate (iterations = int(math.log(r - l)/math.log(2)))
+    for i in range(int(math.log(r - l)/math.log(2))):
+        i = 2 ** (i + 1)
+        for j in (k for k in range(r - l) if k % i == 0):
+            if l + j + i <= r:
+                merge_in_place(
+                    arr = arr,
+                    start = l + j,
+                    mid = l + j + int(i / 2),
+                    end = l + j + i
+                )
 
-#     # rejoin arrays
-#     if isinstance(arr[0], list):
-#         return merge(arr[0], arr[1])
+    # handle remainder
+    if (r - l) % i != 0:
+        merge_sort_in_place(arr, r - ((r - l) % i), r - 1)
+        merge_in_place(
+            arr = arr,
+            start = l,
+            mid = r - ((r - l) % i),
+            end = r
+        )
 
-#     return arr
+    return arr
 
 
 # STRETCH: implement the Timsort function below
