@@ -70,6 +70,7 @@ def count_sort( arr, maximum=-1 ):
 
     return sorted_arr
 
+
 def better_insertion_sort( arr ):
     # print("ORIGINAL ARRAY:", arr)
     def sort_check(arr, index, value):
