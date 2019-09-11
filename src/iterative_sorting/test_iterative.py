@@ -39,18 +39,18 @@ class IterativeSortingTest(unittest.TestCase):
         self.assertEqual(count_sort(arr3), "Error, negative numbers not allowed in Count Sort")
         self.assertEqual(count_sort(arr4), sorted(arr4))
     
-    def test_better_insertion_sort(self):
+    def test_better_insertion_sort_2(self):
         arr0 = [6, 5, 12, 3, 0, 5, 5, 3]
         arr1 = [1, 5, 8, 4, 2, 9, 6, 0, 3, 7]
         arr2 = []
         arr3 = [1, 5, -2, 4, 3]
         arr4 = random.sample(range(200), 50)
 
-        self.assertEqual(better_insertion_sort(arr0), [0,3,3,5,5,5,6,12])
-        self.assertEqual(better_insertion_sort(arr1), [0,1,2,3,4,5,6,7,8,9])
-        self.assertEqual(better_insertion_sort(arr2), [])
-        self.assertEqual(better_insertion_sort(arr3), [-2,1,3,4,5])
-        self.assertEqual(better_insertion_sort(arr4), sorted(arr4))
+        self.assertEqual(better_insertion_sort_2(arr0), [0,3,3,5,5,5,6,12])
+        self.assertEqual(better_insertion_sort_2(arr1), [0,1,2,3,4,5,6,7,8,9])
+        self.assertEqual(better_insertion_sort_2(arr2), [])
+        self.assertEqual(better_insertion_sort_2(arr3), [-2,1,3,4,5])
+        self.assertEqual(better_insertion_sort_2(arr4), sorted(arr4))
 
 
 if __name__ == '__main__':
